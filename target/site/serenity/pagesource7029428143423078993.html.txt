@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<title>Books</title>
+<link rel="stylesheet" type="text/css" href="common.css" media="all" /> 
+</head>
+<body>
+<center>
+<form name="f">
+<div id="available" class="d">
+<h2>All available books</h2>
+	<table style="" id="listing">
+	<tbody><tr>
+	<td>Title</td><td>In stock</td><td>Cost</td><td>Add quantity to cart</td>
+	</tr>
+	<tr>
+	<td>Core Java</td><td>5</td><td>Rs. 300</td><td><input type="text" name="q" value="0" /></td>
+	</tr>
+	<tr>
+	<td>Ruby for Rails</td><td>12</td><td>Rs. 200</td><td><input type="text" name="q" value="0" /></td>
+	</tr>
+	<tr>
+	<td>Python Cookbook</td><td>7</td><td>Rs. 350</td><td><input type="text" name="q" value="0" /></td>
+	</tr>
+	</tbody></table>
+	<br />
+	<input type="button" value="Add" onclick="addToCart()" /> 
+	| <input type="button" value="Clear" onclick="clearCart()" />
+	| <input type="button" value="Logout" onclick="location.href='login.htm'" />
+</div>
+</form>
+
+<script>
+function addToCart(){
+	var s = "&lt;table id='added'&gt;&lt;tr&gt;&lt;td&gt;Title&lt;/td&gt;&lt;td&gt;Quantity&lt;/td&gt;&lt;td&gt;Unit Cost&lt;/td&gt;&lt;td&gt;Total Cost&lt;/td&gt;&lt;/tr&gt;";
+	var sum = 0
+
+	for (var i=0; i&lt;books.length; i++){
+		var book = books[i];
+		var el = document.getElementsByTagName("INPUT")[book.i];
+		var val = parseInt(el.value);
+		if (val &gt; 0){
+			s += "&lt;tr&gt;&lt;td&gt;" + book.t + "&lt;/td&gt;&lt;td&gt;" + el.value + "&lt;/td&gt;&lt;td&gt;Rs." + book.q + "&lt;/td&gt;&lt;td&gt; Rs." + (val * book.q) + "&lt;/td&gt;&lt;/tr&gt;";
+			sum += val * book.q;
+		}
+	}
+	s += "&lt;/table&gt;";
+	//alert(document.getElementById("cartDiv").innerHTML);
+	document.getElementById("cartDiv").innerHTML = s;	
+	document.getElementById("total").value = sum;
+}
+var books = [{"t":"Core Java", "q":300, "i":0},{"t":"Ruby for Rails", "q":200, "i":1},{"t":"Python Cookbook", "q":350, "i":2}];
+function clearCart(){
+	for (var i=0; i&lt;books.length; i++){
+		document.getElementsByTagName("INPUT")[i].value = "";
+	}
+	addToCart();	
+}
+</script>
+<style>
+#cartDiv {
+	xborder: 1px solid gray;
+}
+td{
+  width:150px;
+}
+</style>
+<div id="cart" class="d">
+	<h2>My Cart</h2>
+	<div id="cartDiv"><table id="added"><tbody><tr><td>Title</td><td>Quantity</td><td>Unit Cost</td><td>Total Cost</td></tr><tr><td>Core Java</td><td>3</td><td>Rs.300</td><td> Rs.900</td></tr><tr><td>Ruby for Rails</td><td>5</td><td>Rs.200</td><td> Rs.1000</td></tr><tr><td>Python Cookbook</td><td>3</td><td>Rs.350</td><td> Rs.1050</td></tr></tbody></table></div><br /><br />
+	Grand Total: <input type="text" id="total" value="0" /> 
+</div>
+
+</center>
+
+</body></html>

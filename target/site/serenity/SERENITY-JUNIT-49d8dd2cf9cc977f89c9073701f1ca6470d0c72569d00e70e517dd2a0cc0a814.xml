@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite errors="0" failures="0" name="Ingresar a Google y digitar la prueba Pruebaz" skipped="0" tests="1" time="11.13" timestamp="2019-09-02 11:49:27"><testcase name="Ingresar a Google y digitar la palabra Pruebaz, verificar que aparezca la palabra  &quot;Pruebas&quot; y validar que la lista de resultados sea mayor a 6"/></testsuite>
